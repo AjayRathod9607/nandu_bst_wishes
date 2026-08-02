@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Nandu, My Best Friend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EASY-EDIT ZONE
+     Search for "EDIT ME" comments throughout this file to
+     personalize names, the letter text, memories, and reasons.
+     ============================================================ */
+
+  :root{
+    --sky-deep:#161331;
+    --sky-mid:#241f4e;
+    --sky-glow:#3a2e6b;
+    --gold:#ffd39a;
+    --gold-soft:#ffe6c2;
+    --blush:#ffb3c6;
+    --lavender:#c9bdf0;
+    --cream:#faf4e8;
+    --line:rgba(255,230,194,0.25);
+    --shadow: 0 20px 50px rgba(10,8,30,0.45);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 0%, var(--sky-glow) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 10%, rgba(255,179,198,0.12) 0%, transparent 50%),
+      linear-gradient(180deg, var(--sky-deep) 0%, #100e26 55%, #0b0a1c 100%);
+    color:var(--cream);
+    font-family:'Literata', Georgia, serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  h1,h2,h3, .script{
+    font-family:'Dancing Script', cursive;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+
+  a, button{ font-family:inherit; }
+
+  /* ---------- Starfield ---------- */
+  #stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+  }
+  .star{
+    position:absolute;
+    width:2px; height:2px;
+    background:var(--gold-soft);
+    border-radius:50%;
+    opacity:0.6;
+    animation:twinkle 3.5s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.15; transform:scale(1);}
+    50%{opacity:0.95; transform:scale(1.6);}
+  }
+
+  /* ---------- Fireflies / floating hearts ---------- */
+  .firefly{
+    position:fixed;
+    z-index:1;
+    pointer-events:none;
+    font-size:14px;
+    opacity:0;
+    animation:drift linear forwards;
+  }
+  @keyframes drift{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0;}
+    10%{opacity:0.9;}
+    90%{opacity:0.7;}
+    100%{ transform:translateY(-110vh) translateX(var(--drift-x,40px)) rotate(360deg); opacity:0;}
+  }
+
+  section{
+    position:relative; z-index:2;
+    max-width:900px;
+    margin:0 auto;
+    padding:90px 24px;
+  }
+
+  /* ---------- Fairy lights ---------- */
+  .lights{
+    position:relative;
+    height:70px;
+    max-width:900px;
+    margin:0 auto;
+    padding-top:18px;
+  }
+  .wire{
+    position:absolute; top:18px; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, transparent, rgba(255,230,194,0.35), transparent);
+  }
+  .bulb{
+    position:absolute; top:14px;
+    width:10px; height:14px;
+    border-radius:50% 50% 60% 60%;
+    background:var(--gold);
+    box-shadow:0 0 10px 3px rgba(255,211,154,0.65);
+    animation:bulb-glow 2.4s ease-in-out infinite;
+  }
+  @keyframes bulb-glow{
+    0%,100%{opacity:0.5; box-shadow:0 0 6px 2px rgba(255,211,154,0.4);}
+    50%{opacity:1; box-shadow:0 0 16px 5px rgba(255,211,154,0.85);}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    text-align:center;
+    padding-top:20px;
+    padding-bottom:60px;
+  }
+  .eyebrow{
+    font-family:'Literata', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--lavender);
+    opacity:0.85;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5rem);
+    line-height:1.15;
+    margin:0 0 20px 0;
+    background:linear-gradient(90deg, var(--gold-soft), var(--blush) 60%, var(--lavender));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.sub{
+    font-size:1.15rem;
+    max-width:520px;
+    margin:0 auto;
+    color:var(--cream);
+    opacity:0.85;
+    line-height:1.7;
+  }
+  .hero .signoff{
+    margin-top:28px;
+    font-family:'Dancing Script', cursive;
+    font-size:1.4rem;
+    color:var(--gold-soft);
+  }
+
+  /* ---------- Sound toggle ---------- */
+  #sound-toggle{
+    position:fixed;
+    top:20px; right:20px;
+    z-index:50;
+    background:rgba(250,244,232,0.08);
+    border:1px solid var(--line);
+    color:var(--cream);
+    padding:10px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:0.85rem;
+    backdrop-filter:blur(6px);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:background 0.3s ease, transform 0.2s ease;
+  }
+  #sound-toggle:hover{ background:rgba(250,244,232,0.16); transform:translateY(-1px); }
+  #sound-toggle .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--blush);
+    box-shadow:0 0 8px 2px var(--blush);
+    animation:bulb-glow 1.6s ease-in-out infinite;
+  }
+
+  /* ---------- Envelope ---------- */
+  .envelope-wrap{
+    text-align:center;
+  }
+  .envelope-hint{
+    font-style:italic;
+    color:var(--lavender);
+    opacity:0.8;
+    margin-bottom:26px;
+    font-size:1rem;
+  }
+  .envelope{
+    width:min(340px, 80vw);
+    margin:0 auto;
+    cursor:pointer;
+    position:relative;
+    perspective:1000px;
+    user-select:none;
+  }
+  .envelope-body{
+    position:relative;
+    height:200px;
+    background:linear-gradient(160deg, #efe3cd, #e7d5b3);
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .envelope-body::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(135deg, transparent 49%, rgba(0,0,0,0.06) 50%, transparent 51%),
+      linear-gradient(-135deg, transparent 49%, rgba(0,0,0,0.06) 50%, transparent 51%);
+  }
+  .flap{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:110px;
+    background:linear-gradient(160deg, #f4e9d5, #e2cda0);
+    clip-path:polygon(0 0, 100% 0, 50% 78%);
+    transform-origin:top center;
+    transition:transform 0.8s cubic-bezier(.6,-0.28,.35,1.4);
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  }
+  .envelope.open .flap{
+    transform:rotateX(180deg);
+  }
+  .wax-seal{
+    position:absolute; top:70px; left:50%; transform:translateX(-50%);
+    width:44px; height:44px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--blush), #b5455f 70%);
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+    z-index:3;
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+  .envelope.open .wax-seal{ opacity:0; transform:translateX(-50%) scale(0.3); }
+  .envelope-label{
+    position:absolute; bottom:14px; left:0; right:0;
+    text-align:center;
+    font-family:'Dancing Script', cursive;
+    font-size:1.3rem;
+    color:#5a4a30;
+    z-index:1;
+  }
+
+  /* ---------- Letter ---------- */
+  .letter{
+    max-width:640px;
+    margin:40px auto 0 auto;
+    background:linear-gradient(180deg, #fbf6ea, #f4ecd8);
+    color:#3a2f1e;
+    border-radius:10px;
+    padding:44px 40px;
+    box-shadow:var(--shadow);
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    transition:max-height 1s ease, opacity 1s ease, padding 1s ease, margin 1s ease;
+  }
+  .letter.show{
+    max-height:900px;
+    opacity:1;
+  }
+  .letter p{
+    font-size:1.08rem;
+    line-height:1.9;
+    margin:0 0 18px 0;
+  }
+  .letter .letter-sign{
+    font-family:'Dancing Script', cursive;
+    font-size:1.5rem;
+    margin-top:10px;
+    color:#7a4b3a;
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .section-head h2{
+    font-size:clamp(2rem, 5vw, 2.8rem);
+    color:var(--gold-soft);
+    margin:0 0 8px 0;
+  }
+  .section-head p{
+    color:var(--lavender);
+    opacity:0.8;
+    font-style:italic;
+    margin:0;
+  }
+
+  /* ---------- Memory lane (polaroids) ---------- */
+  .memories{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:28px;
+  }
+  .polaroid{
+    background:#fdfaf3;
+    padding:14px 14px 40px 14px;
+    border-radius:4px;
+    box-shadow:var(--shadow);
+    transform:rotate(var(--tilt, -3deg));
+    transition:transform 0.35s ease;
+    cursor:pointer;
+    position:relative;
+  }
+  .polaroid:nth-child(2n){ --tilt:2.5deg; }
+  .polaroid:nth-child(3n){ --tilt:-1.5deg; }
+  .polaroid:hover{ transform:rotate(0deg) scale(1.04) translateY(-6px); }
+  .polaroid .photo{
+    background:linear-gradient(135deg, var(--sky-glow), var(--lavender));
+    aspect-ratio:1/1;
+    border-radius:2px;
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,0.75);
+    font-size:0.85rem;
+    text-align:center;
+    padding:10px;
+  }
+  .polaroid .caption{
+    font-family:'Dancing Script', cursive;
+    font-size:1.15rem;
+    color:#5a4a30;
+    text-align:center;
+    margin-top:12px;
+  }
+  .polaroid .note{
+    position:absolute; inset:14px 14px 40px 14px;
+    background:#fdfaf3;
+    color:#5a4a30;
+    font-size:0.9rem;
+    line-height:1.5;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    padding:14px;
+    opacity:0;
+    transform:scale(0.9);
+    transition:opacity 0.3s ease, transform 0.3s ease;
+    pointer-events:none;
+  }
+  .polaroid.flipped .note{ opacity:1; transform:scale(1); pointer-events:auto; }
+  .polaroid.flipped .photo, .polaroid.flipped .caption{ opacity:0; }
+
+  /* ---------- Reasons ---------- */
+  .reasons-box{
+    text-align:center;
+  }
+  #reasons-list{
+    list-style:none;
+    padding:0;
+    margin:30px 0 0 0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    max-width:560px;
+    margin-left:auto; margin-right:auto;
+  }
+  #reasons-list li{
+    background:rgba(255,230,194,0.06);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 22px;
+    text-align:left;
+    font-size:1.05rem;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  #reasons-list li.visible{ opacity:1; transform:translateY(0); }
+  #reasons-list li span.num{
+    color:var(--blush);
+    font-family:'Dancing Script', cursive;
+    font-size:1.2rem;
+    margin-right:10px;
+  }
+
+  .btn{
+    background:linear-gradient(90deg, var(--blush), var(--gold));
+    color:#2a1c1f;
+    border:none;
+    padding:14px 30px;
+    border-radius:999px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 10px 26px rgba(255,179,198,0.25);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(255,179,198,0.35); }
+  .btn:active{ transform:translateY(0); }
+  .btn:disabled{ opacity:0.5; cursor:default; transform:none; }
+
+  /* ---------- Finale ---------- */
+  .finale{
+    text-align:center;
+    padding-bottom:140px;
+  }
+  .heart-btn{
+    width:110px; height:110px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--blush), #b5455f 75%);
+    border:none;
+    cursor:pointer;
+    font-size:2.4rem;
+    color:#fff;
+    box-shadow:0 0 0 0 rgba(255,179,198,0.5);
+    animation:pulse 2.2s ease-in-out infinite;
+    margin-bottom:26px;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(255,179,198,0.45);}
+    70%{ box-shadow:0 0 0 30px rgba(255,179,198,0);}
+    100%{ box-shadow:0 0 0 0 rgba(255,179,198,0);}
+  }
+  .finale-msg{
+    max-width:560px;
+    margin:0 auto;
+    font-size:1.2rem;
+    line-height:1.8;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .finale-msg.show{ opacity:1; transform:translateY(0); }
+  .finale-msg .script{ font-size:1.7rem; color:var(--gold-soft); display:block; margin-top:14px; }
+
+  footer{
+    text-align:center;
+    padding:30px 20px 50px;
+    color:var(--lavender);
+    opacity:0.5;
+    font-size:0.85rem;
+    position:relative; z-index:2;
+  }
+
+  @media (max-width:520px){
+    section{ padding:60px 18px; }
+    .letter{ padding:30px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<button id="sound-toggle" onclick="toggleSound()">
+  <span class="dot"></span>
+  <span id="sound-label">Play soft music</span>
+</button>
+
+<!-- ================= HERO ================= -->
+<div class="lights" aria-hidden="true">
+  <div class="wire"></div>
+  <div id="bulbs"></div>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Happy Friendship Day</div>
+  <!-- EDIT ME: her name -->
+  <h1>To Nandu,<br>my favorite person to annoy</h1>
+  <p class="sub">
+    You call me "Mr Best Friend" like it's a joke, but honestly?
+    It might be the nicest title I've ever had. This little page
+    is my way of saying thank you for being you.
+  </p>
+  <div class="signoff">— your Mr Best Friend</div>
+</section>
+
+<!-- ================= ENVELOPE / LETTER ================= -->
+<section class="envelope-wrap">
+  <div class="section-head">
+    <h2>I wrote you something</h2>
+    <p>tap the envelope to open it</p>
+  </div>
+
+  <div class="envelope" id="envelope" onclick="openEnvelope()">
+    <div class="envelope-body">
+      <div class="flap"></div>
+      <div class="wax-seal">💌</div>
+      <div class="envelope-label">Nandu 🤍</div>
+    </div>
+  </div>
+
+  <!-- EDIT ME: personalize further if you'd like -->
+  <div class="letter" id="letter">
+    <p>Nandu,</p>
+    <p>
+      We've never actually spent time together in person. No trips,
+      no hangouts, not a single photo of us to prove any of this
+      happened. And somehow you're still one of the people I feel
+      closest to. That has to say something.
+    </p>
+    <p>
+      It was built entirely out of late-night chats — the kind
+      where neither of us was actually tired, we just didn't want
+      to hang up. Out of laughing at things that weren't even that
+      funny, just because it was you. Out of me venting about
+      career tension I couldn't say out loud to anyone else, and
+      you actually listening instead of just waiting for your turn
+      to talk. Out of family pressure we both carried and somehow
+      made lighter just by saying it out loud to someone who got it.
+    </p>
+    <p>
+      Even our little arguments feel like proof of something —
+      you don't fight with people you don't care about. We never
+      needed a shared place or a shared photo. We just needed the
+      chats. That's more than enough.
+    </p>
+    <div class="letter-sign">Always your Mr Best Friend 🤍</div>
+  </div>
+</section>
+
+<!-- ================= MOMENTS (no photos needed) ================= -->
+<section id="memories">
+  <div class="section-head">
+    <h2 class="script">Not one photo. Plenty of moments.</h2>
+    <p>tap a card to read the note behind it</p>
+  </div>
+  <div class="memories">
+    <div class="polaroid" onclick="this.classList.toggle('flipped')">
+      <div class="photo">🌙<br>late night chats</div>
+      <div class="caption">2 a.m., again</div>
+      <div class="note">Neither of us was actually tired. We just didn't want to hang up.</div>
+    </div>
+    <div class="polaroid" onclick="this.classList.toggle('flipped')">
+      <div class="photo">😂<br>the laughs</div>
+      <div class="caption">not even that funny</div>
+      <div class="note">Some of my hardest laughs were over things that made no sense to anyone but us.</div>
+    </div>
+    <div class="polaroid" onclick="this.classList.toggle('flipped')">
+      <div class="photo">💼<br>career tension</div>
+      <div class="caption">venting it out</div>
+      <div class="note">You listened to every career worry without once making me feel dramatic for having it.</div>
+    </div>
+    <div class="polaroid" onclick="this.classList.toggle('flipped')">
+      <div class="photo">🏠<br>family pressure</div>
+      <div class="caption">the weight we both carried</div>
+      <div class="note">Saying it out loud to you always made it feel lighter, even when nothing actually changed.</div>
+    </div>
+    <div class="polaroid" onclick="this.classList.toggle('flipped')">
+      <div class="photo">⚡<br>little arguments</div>
+      <div class="caption">and making up anyway</div>
+      <div class="note">You don't fight with people you don't care about. Ours never lasted long enough to matter.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REASONS ================= -->
+<section class="reasons-box">
+  <div class="section-head">
+    <h2 class="script">Why you, Nandu</h2>
+    <p>tap the button — one reason at a time</p>
+  </div>
+  <button class="btn" id="reveal-btn" onclick="revealReason()">Reveal a reason</button>
+  <ul id="reasons-list">
+    <li><span class="num">01</span>You've stayed up way too late just to keep talking to me.</li>
+    <li><span class="num">02</span>You listen to my career tension like it's actually important, not just noise.</li>
+    <li><span class="num">03</span>You get the family pressure without me having to explain all of it.</li>
+    <li><span class="num">04</span>You laugh at things that only make sense to us.</li>
+    <li><span class="num">05</span>Even our little arguments never once made me worry about losing you.</li>
+    <li><span class="num">06</span>You call me "Mr Best Friend" and somehow it always makes my day.</li>
+    <li><span class="num">07</span>We've never spent a single day in person, and you still feel like home.</li>
+  </ul>
+</section>
+
+<!-- ================= FINALE ================= -->
+<section class="finale">
+  <div class="section-head">
+    <h2>One last thing</h2>
+    <p>tap the heart</p>
+  </div>
+  <button class="heart-btn" onclick="finale()">🤍</button>
+  <div class="finale-msg" id="finale-msg">
+    Happy Friendship Day, Nandu.
+    <span class="script">— your Mr Best Friend, always.</span>
+  </div>
+</section>
+
+<footer>made with too many late-night thoughts, for Nandu 🤍</footer>
+
+<script>
+/* ========================= STARS ========================= */
+const starsWrap = document.getElementById('stars');
+for(let i=0;i<90;i++){
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.top = Math.random()*70 + 'vh';
+  s.style.animationDelay = (Math.random()*3.5) + 's';
+  const size = Math.random()*2 + 1;
+  s.style.width = size+'px';
+  s.style.height = size+'px';
+  starsWrap.appendChild(s);
+}
+
+/* ========================= FAIRY LIGHTS ========================= */
+const bulbsWrap = document.getElementById('bulbs');
+const bulbColors = ['#ffd39a','#ffb3c6','#c9bdf0','#ffe6c2'];
+const bulbCount = 26;
+for(let i=0;i<bulbCount;i++){
+  const b = document.createElement('div');
+  b.className = 'bulb';
+  const pct = (i/(bulbCount-1))*100;
+  b.style.left = 'calc(' + pct + '% - 5px)';
+  // slight sine sag to feel like a hanging wire
+  const sag = Math.sin((i/(bulbCount-1))*Math.PI) * 14;
+  b.style.top = (14 + sag) + 'px';
+  b.style.background = bulbColors[i % bulbColors.length];
+  b.style.animationDelay = (Math.random()*2.4) + 's';
+  bulbsWrap.appendChild(b);
+}
+
+/* ========================= FIREFLIES / FLOATING HEARTS ========================= */
+const emojiPool = ['✨','🤍','💫'];
+function spawnFirefly(){
+  const f = document.createElement('div');
+  f.className = 'firefly';
+  f.textContent = emojiPool[Math.floor(Math.random()*emojiPool.length)];
+  f.style.left = Math.random()*100 + 'vw';
+  f.style.bottom = '-20px';
+  f.style.setProperty('--drift-x', (Math.random()*80 - 40) + 'px');
+  f.style.animationDuration = (7 + Math.random()*6) + 's';
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(), 14000);
+}
+setInterval(spawnFirefly, 900);
+for(let i=0;i<6;i++) setTimeout(spawnFirefly, i*400);
+
+/* ========================= ENVELOPE ========================= */
+function openEnvelope(){
+  const env = document.getElementById('envelope');
+  const letter = document.getElementById('letter');
+  env.classList.add('open');
+  setTimeout(()=>{
+    letter.classList.add('show');
+    letter.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 500);
+}
+
+/* ========================= REASONS REVEAL ========================= */
+let reasonIndex = 0;
+const reasonItems = document.querySelectorAll('#reasons-list li');
+const revealBtn = document.getElementById('reveal-btn');
+function revealReason(){
+  if(reasonIndex >= reasonItems.length){
+    revealBtn.disabled = true;
+    revealBtn.textContent = "That's all of them (for now)";
+    return;
+  }
+  reasonItems[reasonIndex].classList.add('visible');
+  reasonIndex++;
+  if(reasonIndex >= reasonItems.length){
+    revealBtn.textContent = 'One more time';
+  }
+}
+
+/* ========================= FINALE ========================= */
+function finale(){
+  document.getElementById('finale-msg').classList.add('show');
+  burstHearts();
+}
+function burstHearts(){
+  const centerX = window.innerWidth/2;
+  const centerY = window.innerHeight - 220;
+  for(let i=0;i<26;i++){
+    const h = document.createElement('div');
+    h.className = 'firefly';
+    h.textContent = ['🤍','💛','✨'][Math.floor(Math.random()*3)];
+    h.style.left = centerX + (Math.random()*160-80) + 'px';
+    h.style.bottom = (window.innerHeight - centerY) + 'px';
+    h.style.setProperty('--drift-x', (Math.random()*200 - 100) + 'px');
+    h.style.animationDuration = (3.5 + Math.random()*3) + 's';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 8000);
+  }
+}
+
+/* ========================= AMBIENT MUSIC (generated, no external file needed) =========================
+   This creates a soft, looping ambient pad using the Web Audio API,
+   so the page needs no external mp3 and works as a single file.
+   If you'd rather use a real song instead, see the commented-out
+   <audio> option at the bottom of this script. */
+let audioCtx = null;
+let musicPlaying = false;
+let musicNodes = [];
+
+function startAmbientMusic(){
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  const masterGain = audioCtx.createGain();
+  masterGain.gain.value = 0.05;
+  masterGain.connect(audioCtx.destination);
+
+  // gentle chord: soft pad notes (C major add9-ish, warm & simple)
+  const freqs = [130.81, 164.81, 196.00, 246.94]; // C3 E3 G3 B3
+  freqs.forEach((f, i) => {
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = f;
+
+    const gain = audioCtx.createGain();
+    gain.gain.value = 0;
+
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start();
+
+    // slow breathing swell for each note, slightly offset per note
+    const now = audioCtx.currentTime;
+    const cycle = 6 + i * 0.7;
+    function swell(t){
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(gain.gain.value, t);
+      gain.gain.linearRampToValueAtTime(0.9, t + cycle/2);
+      gain.gain.linearRampToValueAtTime(0.05, t + cycle);
+    }
+    swell(now);
+    const id = setInterval(()=> swell(audioCtx.currentTime), cycle*1000);
+
+    musicNodes.push({osc, gain, id});
+  });
+
+  musicPlaying = true;
+  document.getElementById('sound-label').textContent = 'Pause music';
+}
+
+function stopAmbientMusic(){
+  musicNodes.forEach(n=>{
+    clearInterval(n.id);
+    n.osc.stop();
+  });
+  musicNodes = [];
+  musicPlaying = false;
+  document.getElementById('sound-label').textContent = 'Play soft music';
+}
+
+function toggleSound(){
+  if(!musicPlaying){
+    startAmbientMusic();
+  } else {
+    stopAmbientMusic();
+  }
+}
+
+/* ---- OPTIONAL: use a real song file instead of generated music ----
+   1) Delete/ignore the ambient music functions above.
+   2) Put an <audio id="bg-music" src="your-song.mp3" loop></audio>
+      tag anywhere in the body.
+   3) Change toggleSound() to:
+        const music = document.getElementById('bg-music');
+        if(music.paused){ music.play(); label.textContent='Pause music'; }
+        else { music.pause(); label.textContent='Play soft music'; }
+------------------------------------------------------------------- */
+</script>
+
+</body>
+</html>
